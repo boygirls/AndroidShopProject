@@ -1,0 +1,5 @@
+include ':opendanmaku'
+include ':banner'
+include ':ZBLibrary'
+include ':app'
+rootProject.name = "AndroidShopProject"
