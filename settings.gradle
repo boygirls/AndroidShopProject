@@ -3,3 +3,4 @@ include ':banner'
 include ':ZBLibrary'
 include ':app'
 rootProject.name = "AndroidShopProject"
+include ':FlycoTabLayout_Lib'

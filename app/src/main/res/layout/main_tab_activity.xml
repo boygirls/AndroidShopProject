@@ -33,7 +33,7 @@
             <ImageView
                 android:id="@+id/ivBottomTabTab0"
                 style="@style/bottom_tab_iv"
-                android:src="@drawable/taobao" />
+                android:src="@drawable/index" />
 
             <TextView
                 android:id="@+id/tvBottomTabTab0"

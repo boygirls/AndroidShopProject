@@ -44,6 +44,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation project(path: ':banner')
     implementation project(path: ':opendanmaku')
+    implementation project(path: ':FlycoTabLayout_Lib')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -51,4 +52,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.2.4'
     implementation files('libs/picasso-2.5.2.jar')
     implementation 'com.jakewharton:butterknife:7.0.1'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:percent:25.0.0'
 }
