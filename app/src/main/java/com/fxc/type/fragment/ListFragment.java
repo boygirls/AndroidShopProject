@@ -44,8 +44,6 @@ public class ListFragment extends BaseFragment {
     private String[] urls = new String[]{Constants.SKIRT_URL, Constants.JACKET_URL, Constants.PANTS_URL, Constants.OVERCOAT_URL,
             Constants.ACCESSORY_URL, Constants.BAG_URL, Constants.DRESS_UP_URL, Constants.HOME_PRODUCTS_URL, Constants.STATIONERY_URL,
             Constants.DIGIT_URL, Constants.GAME_URL};
-//
-//
 
     private TypeLeftAdapter leftAdapter;
     private boolean isFirst = true;
@@ -54,7 +52,12 @@ public class ListFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          super.onCreateView(inflater, container, savedInstanceState);
-        View view = View.inflate(context, R.layout.fragment_list, null);
+        //View view = View.inflate(context, R.layout.fragment_list, null);
+        setContentView(R.layout.fragment_list);
+
+        initView();
+        initData();
+        initEvent();
         return view;
     }
 
@@ -111,7 +114,7 @@ public class ListFragment extends BaseFragment {
 
             switch (id) {
                 case 100:
-//                    Toast.makeText(context, "http", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "typeHttps", Toast.LENGTH_SHORT).show();
                     if (response != null) {
                         //解析数据
                         processData(response);
@@ -119,7 +122,6 @@ public class ListFragment extends BaseFragment {
                             leftAdapter = new TypeLeftAdapter(context);
                             lv_left.setAdapter(leftAdapter);
                         }
-
 
                         initListener(leftAdapter);
 

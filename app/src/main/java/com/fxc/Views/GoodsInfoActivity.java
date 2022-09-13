@@ -151,7 +151,7 @@ public class GoodsInfoActivity extends Activity implements View.OnClickListener 
 
         } else if (v == btnGoodInfoAddcart) {
             //添加购物车
-//            cartProvider.addData(goods_bean);
+            cartProvider.addData(goods_bean);
             showPopwindow();
 //            Toast.makeText(GoodsInfoActivity.this, "添加购物车成功", Toast.LENGTH_SHORT).show();
         }

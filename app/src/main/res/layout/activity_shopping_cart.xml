@@ -13,18 +13,17 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <ImageButton
-            android:id="@+id/ib_shopcart_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/top_bar_left_back" />
-
+<!--        <ImageButton-->
+<!--            android:id="@+id/ib_shopcart_back"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/top_bar_left_back" />-->
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="购物车"
+            android:text=""
             android:textColor="#303235"
             android:textSize="20sp" />
 
@@ -32,6 +31,7 @@
             android:id="@+id/tv_shopcart_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="编辑"
             android:textColor="#303235" />
     </LinearLayout>

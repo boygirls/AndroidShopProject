@@ -33,7 +33,7 @@ import zuo.biao.library.ui.AlertDialog;
  * Use the {@link HomeFragment#} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment  extends BaseFragment implements View.OnClickListener, AlertDialog.OnDialogButtonClickListener {
+public class HomeFragment extends BaseFragment implements View.OnClickListener, AlertDialog.OnDialogButtonClickListener {
 
     private static final String TAG = HomeFragment.class.getSimpleName();
 
@@ -46,7 +46,9 @@ public class HomeFragment  extends BaseFragment implements View.OnClickListener,
      */
     private ResultBeanData.ResultBean resultBean;
 
-    /**创建一个Fragment实例
+    /**
+     * 创建一个Fragment实例
+     *
      * @return
      */
     public static HomeFragment createInstance() {
@@ -78,6 +80,9 @@ public class HomeFragment  extends BaseFragment implements View.OnClickListener,
         getDataFromNet();
     }
 
+    /**
+     * 发送请求
+     */
     private void getDataFromNet() {
         String url = Constants.HOME_URL;
         OkHttpUtils
@@ -94,7 +99,7 @@ public class HomeFragment  extends BaseFragment implements View.OnClickListener,
                     @Override
                     public void onError(Call call, Exception e, int id) {
 
-                        Log.e(TAG,"首页请求失败=="+e.getMessage());
+                        Log.e(TAG, "首页请求失败==" + e.getMessage());
                     }
 
                     /**
@@ -104,7 +109,7 @@ public class HomeFragment  extends BaseFragment implements View.OnClickListener,
                      */
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e(TAG,"首页请求成功=="+response);
+                        Log.e(TAG, "首页请求成功==" + response);
                         //解析数据
                         processData(response);
                     }
@@ -113,49 +118,46 @@ public class HomeFragment  extends BaseFragment implements View.OnClickListener,
                 });
     }
 
+    /**
+     * 处理数据
+     *
+     * @param json
+     */
     private void processData(String json) {
-        ResultBeanData resultBeanData = JSON.parseObject(json,ResultBeanData.class);
+        ResultBeanData resultBeanData = JSON.parseObject(json, ResultBeanData.class);
         resultBean = resultBeanData.getResult();
-        if(resultBean != null){
+        if (resultBean != null) {
             //有数据
             //设置适配器
-            adapter = new HomeFragmentAdapter(context,resultBean);
+            adapter = new HomeFragmentAdapter(context, resultBean);
             rvHome.setAdapter(adapter);
-            GridLayoutManager manager =  new GridLayoutManager(context,1);
+            GridLayoutManager manager = new GridLayoutManager(context, 1);
             //设置跨度大小监听
             manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
-                    if(position <= 3){
-                        //隐藏
-                        //ib_top.setVisibility(View.GONE);
-                    }else{
-                        //显示
-                        //ib_top.setVisibility(View.VISIBLE);
-                    }
-                    //只能返回1
                     return 1;
                 }
             });
             //设置布局管理者
             rvHome.setLayoutManager(manager);
 
-        }else{
+        } else {
             //没有数据
         }
-        Log.e(TAG,"解析成功=="+resultBean.getHot_info().get(0).getName());
+
     }
 
     @Override
     public void initEvent() {//必须调用
 
     }
+
     @Override
     public void onDialogButtonClick(int requestCode, boolean isPositive) {
-        if (! isPositive) {
+        if (!isPositive) {
             return;
         }
-
         switch (requestCode) {
             case 0:
                 break;
@@ -163,8 +165,6 @@ public class HomeFragment  extends BaseFragment implements View.OnClickListener,
                 break;
         }
     }
-
-
 
     @Override
     public void onClick(View v) {//直接调用不会显示v被点击效果

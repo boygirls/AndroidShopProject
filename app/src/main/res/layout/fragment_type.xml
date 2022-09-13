@@ -19,18 +19,9 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             tl:tl_bar_color="#ffffff"
-            tl:tl_indicator_color="#ff0000"
+            tl:tl_indicator_color="#1296db"
             tl:tl_indicator_corner_radius="20dp"
             tl:tl_tab_padding="23dp" />
-
-        <ImageView
-            android:id="@+id/iv_type_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/icon_search_white" />
 
         <View
             android:layout_width="match_parent"

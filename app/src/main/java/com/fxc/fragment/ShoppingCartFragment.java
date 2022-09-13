@@ -69,7 +69,7 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ibShopcartBack.setOnClickListener(this);
+//        ibShopcartBack.setOnClickListener(this);
         btnCheckOut.setOnClickListener(this);
         tvShopcartEdit.setOnClickListener(this);
         btn_delete.setOnClickListener(this);
@@ -94,7 +94,7 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void initView() {//必须调用
-        ibShopcartBack = (ImageButton) findViewById(R.id.ib_shopcart_back);
+        //ibShopcartBack = (ImageButton) findViewById(R.id.ib_shopcart_back);
         tvShopcartEdit = (TextView) findViewById(R.id.tv_shopcart_edit);
         recyclerview = (RecyclerView) findViewById(R.id.recyclerview);
         checkboxAll = (CheckBox) findViewById(R.id.checkbox_all);
@@ -125,9 +125,7 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if (v == ibShopcartBack) {
-            //finish();
-        } else if (v == btnCheckOut) {
+        if (v == btnCheckOut) {
             //Toast.makeText(ShoppingCartActivity.this, "结算", Toast.LENGTH_SHORT).show();
             showShortToast("结算");
         } else if (v == tvShopcartEdit) {
@@ -147,9 +145,8 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
             checkData();
             adapter.checkAll();
         } else if (v == tv_empty_cart_tobuy) {
-
             //页面跳转
-           Intent intent = new Intent(context, main_tab_activity.class);
+            Intent intent = new Intent(context, main_tab_activity.class);
             startActivity(intent);
         }
     }

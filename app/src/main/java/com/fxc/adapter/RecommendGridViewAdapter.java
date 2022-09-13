@@ -15,7 +15,7 @@ import com.fxc.util.Constants;
 import java.util.List;
 
 /**
- * 作用：推荐的适配器
+ * 作用：推荐适配器
  */
 public class RecommendGridViewAdapter extends BaseAdapter {
     private final Context mContext;

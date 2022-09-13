@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.util.SparseArray;
 
 import com.fxc.application.MyApplication;
-import com.fxc.application.ZBLApplication;
 import com.fxc.model.GoodsBean;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

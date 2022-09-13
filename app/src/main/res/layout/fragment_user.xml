@@ -23,7 +23,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="170dp"
-                    android:background="@drawable/new_user_icon_background" />
+                    android:background="@drawable/content" />
 
                 <ImageButton
                     android:id="@+id/ib_user_icon_avator"
@@ -247,16 +247,7 @@
 
     </ScrollView>
 
-    <TextView
-        android:id="@+id/tv_usercenter"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="#fe3f3f"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="个人中心"
-        android:textColor="#fff"
-        android:textSize="20sp" />
+
 
 
     <RelativeLayout

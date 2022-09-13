@@ -89,7 +89,7 @@ public class TagFragment extends BaseFragment {
 
             switch (id) {
                 case 100:
-//                    Toast.makeText(context, "http", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "http", Toast.LENGTH_SHORT).show();
                     if (response != null) {
                         processData(response);
                         Log.e("TAG", response);

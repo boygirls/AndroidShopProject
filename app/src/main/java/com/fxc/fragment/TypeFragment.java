@@ -62,7 +62,7 @@ public class TypeFragment extends BaseFragment {
     @Override
     public void initView() {//必须调用
         segmentTabLayout = (SegmentTabLayout) view.findViewById(R.id.tl_1);
-        iv_type_search = (ImageView) view.findViewById(R.id.iv_type_search);
+        //iv_type_search = (ImageView) view.findViewById(R.id.iv_type_search);
         fl_type = (FrameLayout) view.findViewById(R.id.fl_type);
     }
 

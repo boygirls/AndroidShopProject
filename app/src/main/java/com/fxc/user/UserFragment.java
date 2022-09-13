@@ -70,7 +70,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
         tvUserInvitation = (TextView) view.findViewById(R.id.tv_user_invitation);
         tvUserCallcenter = (TextView) view.findViewById(R.id.tv_user_callcenter);
         tvUserFeedback = (TextView) view.findViewById(R.id.tv_user_feedback);
-        tvUsercenter = (TextView) view.findViewById(R.id.tv_usercenter);
+        //tvUsercenter = (TextView) view.findViewById(R.id.tv_usercenter);
         ibUserSetting = (ImageButton) view.findViewById(R.id.ib_user_setting);
         ibUserMessage = (ImageButton) view.findViewById(R.id.ib_user_message);
         scrollView = (ScrollView) view.findViewById(R.id.scrollview);

@@ -1,9 +1,11 @@
 package com.fxc.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +22,15 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.fxc.R;
+import com.fxc.Views.GoodsInfoActivity;
 import com.fxc.model.GoodsBean;
 import com.fxc.model.ResultBeanData;
 import com.fxc.util.Constants;
 import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerClickListener;
+import com.youth.banner.listener.OnLoadImageListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,7 +67,8 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
      * 热卖
      */
     public static final int HOT = 5;
-    private static final String GOODS_BEAN = "goodsBean";
+    private static final String GOODS_BEAN = "goods_bean";
+    private static final String TAG = "HomeFragmentAdapter";
     /**
      * 用来初始化布局
      */
@@ -93,7 +101,7 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == BANNER) {
-            return new BannerViewHolder(mContext, mLayoutInflater.inflate(R.layout.banner_viewpager, null));
+            return new BannerViewHolder(mLayoutInflater.inflate(R.layout.banner_viewpager, null), mContext,  resultBean);
         } else if (viewType == CHANNEL) {
             return new ChannelViewHolder(mContext, mLayoutInflater.inflate(R.layout.channel_item, null));
         } else if (viewType == ACT) {
@@ -179,7 +187,6 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
         }
     }
 
-
     class RecommendViewHolder extends RecyclerView.ViewHolder{
 
         private final Context mContext;
@@ -218,7 +225,6 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
             });
         }
     }
-
 
     class SeckillViewHolder extends RecyclerView.ViewHolder{
         private final Context mContext;
@@ -391,49 +397,71 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
         }
     }
 
-
     class BannerViewHolder extends RecyclerView.ViewHolder {
-        private Context mContext;
-        private Banner banner;
+        public Banner banner;
+        public Context mContext;
+        public ResultBeanData.ResultBean resultBean;
 
-        public BannerViewHolder(Context mContext, View itemView) {
+        public BannerViewHolder(View itemView, Context context, ResultBeanData.ResultBean resultBean) {
             super(itemView);
-            this.mContext = mContext;
-            //this.banner =  (Banner) itemView.findViewById(R.id.banner);
+            banner = (Banner) itemView.findViewById(R.id.banner);
+            this.mContext = context;
+            this.resultBean = resultBean;
         }
 
+        public void setData(final List<ResultBeanData.ResultBean.BannerInfoBean> banner_info) {
 
-        public void setData(List<ResultBeanData.ResultBean.BannerInfoBean> banner_info) {
-            //设置Banner的数据
-            //得到图片集合地址
-            List<String> imagesUrl = new ArrayList<>();
-            for (int i = 0; i < banner_info.size(); i++) {
-                String imageUrl = banner_info.get(i).getImage();
-                imagesUrl.add(imageUrl);
+            banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+            //如果你想用自己项目的图片加载,那么----->自定义图片加载框架
+            List<String> imageUris = new ArrayList<>();
+            for (int i = 0; i < resultBean.getBanner_info().size(); i++) {
+                imageUris.add(resultBean.getBanner_info().get(i).getImage());
             }
+            banner.setBannerAnimation(Transformer.Accordion);
+            banner.setImages(imageUris, new OnLoadImageListener() {
+                @Override
+                public void OnLoadImage(ImageView view, Object url) {
+                    /**
+                     * 这里你可以根据框架灵活设置
+                     */
+                    Glide.with(mContext)
+                            .load(Constants.BASE_URl_IMAGE + url)
+                            .into(view);
+                }
+            });
+            //设置点击事件
+            banner.setOnBannerClickListener(new OnBannerClickListener() {
+                @Override
+                public void OnBannerClick(int position) {
+                    if(position - 1 < banner_info.size()){
+                        int option = banner_info.get(position - 1).getOption();
+                        String product_id = "";
+                        String name = "";
+                        String cover_price = "";
+                        if (position - 1 == 0) {
+                            product_id = "627";
+                            cover_price = "32.00";
+                            name = "剑三T恤批发";
+                        } else if (position - 1 == 1) {
+                            product_id = "21";
+                            cover_price = "8.00";
+                            name = "同人原创】剑网3 剑侠情缘叁 Q版成男 口袋胸针";
+                        } else {
+                            product_id = "1341";
+                            cover_price = "50.00";
+                            name = "【蓝诺】《天下吾双》 剑网3同人本";
+                        }
+                        String image = banner_info.get(position - 1).getImage();
+                        GoodsBean goodsBean = new GoodsBean(name, cover_price, image, product_id);
 
-//            //设置循环指示点
-//            banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
-//            //设置手风琴效果
-//            banner.setBannerAnimation(Transformer.Accordion);
-//            banner.setImages(imagesUrl, new OnLoadImageListener() {
-//                @Override
-//                public void OnLoadImage(ImageView view, Object url) {
-//
-//                    //联网请求图片-Glide
-//                    Glide.with(mContext).load(Constants.BASE_URL_IMAGE + url).into(view);
-//
-//                }
-//            });
+                        Intent intent = new Intent(mContext, GoodsInfoActivity.class);
+                        intent.putExtra("goods_bean", goodsBean);
+                        mContext.startActivity(intent);
+                    }
 
-            //设置item的点击事件
-//            banner.setOnBannerClickListener(new OnBannerClickListener() {
-//                @Override
-//                public void OnBannerClick(int position) {
-//                    Toast.makeText(mContext, "position==" + position, Toast.LENGTH_SHORT).show();
-////                    startGoodsInfoActivity(goodsBean);
-//                }
-//            });
+                }
+            });
+
         }
     }
 
@@ -442,9 +470,10 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
      * @param goodsBean
      */
     private void startGoodsInfoActivity(GoodsBean goodsBean) {
-//        Intent intent = new Intent(mContext, GoodsInfoActivity.class);
-//        intent.putExtra(GOODS_BEAN,goodsBean);
-//        mContext.startActivity(intent);
+        Log.e(TAG,"启动详细页面=="+resultBean.getHot_info().get(0).getName());
+        Intent intent = new Intent(mContext, GoodsInfoActivity.class);
+        intent.putExtra(GOODS_BEAN,goodsBean);
+        mContext.startActivity(intent);
     }
 
 

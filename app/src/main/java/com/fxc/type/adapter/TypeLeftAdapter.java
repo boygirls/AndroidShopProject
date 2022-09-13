@@ -11,7 +11,7 @@ import com.fxc.R;
 
 
 /**
- * Created by Administrator on 2016/10/3.
+ * Created by Administrator
  */
 public class TypeLeftAdapter extends BaseAdapter {
     private Context mContext;

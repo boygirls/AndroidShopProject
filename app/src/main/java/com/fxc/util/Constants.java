@@ -6,7 +6,7 @@ package com.fxc.util;
 public class Constants {
 
 //    public static String BASE_URL = "http://192.168.51.104:8080/atguigu";
-   // public static String BASE = "http://192.168.137.85:8081";
+    //public static String BASE = "http://192.168.137.85:8081";
     public static String BASE = "http://10.61.80.195:8081";
     //public static String BASE = "http://192.168.43.19:8081";
 

@@ -199,7 +199,7 @@ public class TypeRightAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         Intent intent = new Intent(mContext, GoodsInfoActivity.class);
                         intent.putExtra("goods_bean", goodsBean);
                         mContext.startActivity(intent);
-                        // Toast.makeText(mContext, "position" + i, Toast.LENGTH_SHORT).show();
+                         Toast.makeText(mContext, "position" + i, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
